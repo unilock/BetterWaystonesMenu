@@ -1,10 +1,10 @@
 modLoader="javafml"
 loaderVersion="[40,)"
-license="All Rights Reserved"
+license="MIT"
 
 [[mods]]
 modId="betterwaystonesmenu"
-version="${file.jarVersion}"
+version="${version}"
 displayName="BetterWaystonesMenu"
 logoFile="betterwaystonesmenu-icon.png"
 authors="Loxoz"
