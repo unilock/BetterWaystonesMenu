@@ -6,7 +6,7 @@ import net.blay09.mods.waystones.client.gui.screen.WaystoneSelectionScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.client.event.ScreenOpenEvent;
+import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashMap;
@@ -21,8 +21,7 @@ public class ScreenOpenHandler {
     }};
 
     @SubscribeEvent
-    public void onScreenOpen(ScreenOpenEvent e) {
-        if (e.getScreen() == null) return;
+    public void onScreenOpen(ScreenEvent.Opening e) {
         ScreenSupplier supplier = supplierMap.get(e.getScreen().getClass());
         if (supplier == null) return;
         if (ignoreNextMenu) {
@@ -33,7 +32,7 @@ public class ScreenOpenHandler {
         if (client.player == null) return;
         try {
             var screen = supplier.supply(e.getScreen(), client.player.getInventory());
-            e.setScreen(screen);
+            e.setNewScreen(screen);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
