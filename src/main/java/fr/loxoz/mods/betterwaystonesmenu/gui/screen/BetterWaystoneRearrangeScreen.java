@@ -25,6 +25,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.contents.LiteralContents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -371,7 +372,7 @@ public class BetterWaystoneRearrangeScreen extends AbstractBetterWaystoneScreen 
             if (dragContext != null && dragContext.index == index) return;
             matrices.pushPose();
             float prevAlpha = -1;
-            if (!queryMatcher.isBlank() && !queryMatcher.match(getMessage().getContents())) { // `getContents()` is faster than `getString()`
+            if (!queryMatcher.isBlank() && !queryMatcher.match(((LiteralContents) getMessage().getContents()).text())) { // `getContents()` is faster than `getString()`
                 prevAlpha = alpha;
                 alpha *= 0.5;
             }

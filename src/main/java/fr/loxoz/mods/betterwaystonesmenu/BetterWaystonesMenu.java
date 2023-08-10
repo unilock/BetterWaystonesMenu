@@ -5,7 +5,7 @@ import fr.loxoz.mods.betterwaystonesmenu.handler.ScreenOpenHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ConfigGuiHandler;
+import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.IExtensionPoint;
@@ -66,7 +66,7 @@ public class BetterWaystonesMenu {
     public Optional<Screen> getConfigScreen(Minecraft minecraft, Screen parent) {
         var info = getModInfo();
         if (info == null) return Optional.empty();
-        return ConfigGuiHandler.getGuiFactoryFor(info).map(f -> f.apply(minecraft, parent));
+        return ConfigScreenHandler.getScreenFactoryFor(info).map(f -> f.apply(minecraft, parent));
     }
     public Optional<Screen> getConfigScreen(Minecraft minecraft) {
         return getConfigScreen(minecraft, minecraft.screen);
